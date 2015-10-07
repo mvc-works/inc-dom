@@ -10,11 +10,23 @@ var
 
 require :../style/main.css
 
+var
+  table $ {}
+    :store $ ... schema.store
+      push $ ... schema.task
+        set :id :1
+        set :text ":task 1"
+      push $ ... schema.task
+        set :id :2
+        set :text ":task 2 demo"
+        set :done true
+
 recorder.setup $ {}
   :updater updater
-  :initial schema.store
+  :initial table.store
 
 var render $ \ (store core)
+  console.info :udpate (JSON.stringify store)
   page store document.body
 
 recorder.request render

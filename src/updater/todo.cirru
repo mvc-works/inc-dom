@@ -5,7 +5,7 @@ var
 var
   schema $ require :../schema
 
-= exports.add $ \ (store actionData)
+= exports.create $ \ (store actionData)
   var
     id $ actionData.get :id
     text $ actionData.get :text

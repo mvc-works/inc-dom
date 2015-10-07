@@ -7,4 +7,4 @@ var
 = exports.task $ Immutable.fromJS $ {}
   :id null
   :text :
-  :done null
+  :done false

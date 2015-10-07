@@ -4,7 +4,7 @@ var
 
 = module.exports $ \ (store actionType actionData)
   case actionType
-    :todo/add $ todo.add store actionData
+    :todo/create $ todo.create store actionData
     :todo/update $ todo.update store actionData
     :todo/toggle $ todo.toggle store actionData
     :todo/remove $ todo.remove store actionData

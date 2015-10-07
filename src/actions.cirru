@@ -4,30 +4,20 @@ var
   recorder $ require :actions-recorder
 
 = exports.create $ \ (text)
-  recorder.dispatch $ {}
-    :type :todo/create
-    :data $ {}
-      :text text
-      :id (shortid.generate)
+  recorder.dispatch :todo/create $ {}
+    :text text
+    :id (shortid.generate)
 
 = exports.update $ \ (id text)
-  recorder.dispatch $ {}
-    :type :todo/update
-    :data $ {}
-      :id id
-      :text text
+  recorder.dispatch :todo/update $ {}
+    :id id
+    :text text
 
 = exports.toggle $ \ (id)
-  recorder.dispatch $ {}
-    :type :todo/toggle
-    :data id
+  recorder.dispatch :todo/toggle id
 
-= exports.toggle $ \ (id)
-  recorder.dispatch $ {}
-    :type :todo/remove
-    :data id
+= exports.remove $ \ (id)
+  recorder.dispatch :todo/remove id
 
 = exports.archive $ \ ()
-  recorder.dispatch $ {}
-    :type :todo/remove
-    :data null
+  recorder.dispatch :todo/archive

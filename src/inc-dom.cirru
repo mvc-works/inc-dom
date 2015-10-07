@@ -11,7 +11,6 @@ var object2array $ \ (properties)
   var fields $ Object.keys properties
   fields.forEach $ \ (key)
     result.push key (. properties key)
-  console.log result
   , result
 
 var selfClosing $ []
@@ -32,29 +31,32 @@ var selfClosing $ []
   , :wbr
 
 var
-  createElement $ \ (tagName key staticAttrs properties cb)
+  createElement $ \ (tagName staticAttrs properties cb)
+    if (is (typeof properties) :function) $ do
+      = cb properties
+      = properties ({})
     var
       propertiesInArray (object2array properties)
     if (in selfClosing tagName)
       do
-        elementVoid tagName key
+        elementVoid tagName staticAttrs.key
           object2array staticAttrs
           ... propertiesInArray
       do
-        elementOpen tagName key
+        elementOpen tagName staticAttrs.key
           object2array staticAttrs
           ... propertiesInArray
-        cb
+        if (? cb) (cb)
         elementClose tagName
     , undefined
 
   createFactory $ \ (tagName)
-    \ (key staticAttrs properties cb)
-      createElement tagName key staticAttrs properties cb
+    \ (staticAttrs properties cb)
+      createElement tagName staticAttrs properties cb
 
 = exports.createElement createElement
 = exports.createFactory createFactory
-= exports.render IncrementalDOM.patch
+= exports.patch IncrementalDOM.patch
 = exports.text text
 
 var definedTags $ [] :div :span :input :textarea

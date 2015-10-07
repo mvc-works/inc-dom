@@ -3,3 +3,6 @@
 /index.html
 /gulpfile.cirru
 /webpack.*
+/images/
+/style
+/src
